@@ -9,7 +9,15 @@
 ros::NodeHandle  nh;
 
 void messageCb( const std_msgs::Empty& toggle_msg){
-  digitalWrite(LED_BUILTIN, HIGH-digitalRead(LED_BUILTIN));   // blink the led
+  if(digitalRead(LED_BUILTIN) == HIGH){
+    delay(2000);
+    digitalWrite(LED_BUILTIN, 0);
+  }
+  else {
+    
+    digitalWrite(LED_BUILTIN, 1);
+  }
+  
 }
 
 ros::Subscriber<std_msgs::Empty> sub("toggle_led", &messageCb );
